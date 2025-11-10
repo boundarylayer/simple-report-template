@@ -1,0 +1,142 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{simple-report-template}[2025/11/09 Simple Report Template Style]
+
+%==============================================================================
+% REQUIRED PACKAGES
+%==============================================================================
+% Page layout
+\RequirePackage{geometry}
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+
+% Fonts
+\RequirePackage{times}
+
+% Graphics and colors
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
+\RequirePackage{tikz}
+\RequirePackage{tikzpagenodes}
+\RequirePackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+% Captions and floats
+\RequirePackage[labelfont=bf]{caption}
+\RequirePackage{float}
+
+%==============================================================================
+% CAPTION POSITIONING
+%==============================================================================
+% Table captions on top
+\captionsetup[table]{position=top}
+% Figure captions on bottom (default)
+\captionsetup[figure]{position=bottom}
+
+% Tables
+\RequirePackage{tabularx}
+\RequirePackage{multirow}
+
+% Math
+\RequirePackage{amsmath}
+
+% Lists
+\RequirePackage{enumitem}
+
+% TikZ libraries
+\usetikzlibrary{shapes.geometric, arrows.meta, positioning}
+
+%==============================================================================
+% COLORS
+%==============================================================================
+\definecolor{lightgray}{RGB}{211,211,211}
+
+%==============================================================================
+% SECTION FORMATTING
+%==============================================================================
+\setkomafont{section}{\large\bfseries}
+\setkomafont{subsection}{\large\bfseries}
+
+%==============================================================================
+% HEADER AND FOOTER SETUP
+%==============================================================================
+\newcommand{\setupheader}[4]{%
+    \pagestyle{fancy}%
+    \fancyhf{}%
+    \fancyhead[L]{\textit{#1 \\ #2}}%
+    \fancyhead[R]{\textit{#3 \\ #4}}%
+    \fancyfoot[C]{\small Page \thepage\ of \pageref{LastPage}}%
+    \renewcommand{\headrulewidth}{0.2pt}%
+    \setlength{\headsep}{30pt}%
+    \setlength{\headheight}{28pt}%
+}
+
+%==============================================================================
+% TITLE PAGE COMMAND
+%==============================================================================
+\newcommand{\maketitlepage}[5]{%
+    \begin{titlepage}
+    
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[lightgray,opacity=0.8] (current page text area.north west |- current page.north) 
+              rectangle ++(\textwidth,-15pt);
+    \end{tikzpicture}
+    
+    \begin{tikzpicture}[x=1pt,y=1pt]
+        \fill[lightgray, opacity=0.8] (0,0) rectangle (\textwidth,70);
+        
+        \node[draw=black, rectangle, minimum width=2cm, minimum height=2cm, 
+              fill=white, inner sep=0] at (50,34) {
+            \small\textbf{LOGO}
+        };
+        
+        \node[text width=0.85\textwidth, align=center] at (0.62\textwidth,35) 
+            {\LARGE\bfseries\parbox{0.75\textwidth}{\centering #1}};  
+    \end{tikzpicture}
+    
+    \vspace{1cm}
+    
+    \hfill
+    \begin{tikzpicture}
+        \node[fill=black,inner sep=8pt,align=center] {
+            \color{white}\large\sffamily #2
+        };
+    \end{tikzpicture}
+    
+    \vfill
+    
+    \begin{center}
+        \Huge #3
+    \end{center}
+    
+    \vspace{0.5cm}
+    
+    \begin{center}
+        \large \textcolor{black!60}{#4}
+    \end{center}
+    
+    \vfill
+    
+    #5
+    
+    \begin{tikzpicture}[remember picture, overlay]
+        \fill[lightgray,opacity=0.8] (current page text area.south west |- current page.south) 
+              rectangle ++(\textwidth,15pt);
+    \end{tikzpicture}
+    
+    \end{titlepage}%
+}
+
+%==============================================================================
+% AUTHOR INFO COMMAND
+%==============================================================================
+\newcommand{\authorinfo}[3]{%
+    \begin{tabularx}{\textwidth}{l X l}
+        \textbf{Advisor} & & \textbf{Author} \\
+        #1 & & #2\\
+        & & \\
+        \textbf{Date} & &  \\
+        #3 & & \\
+    \end{tabularx}%
+}
+
+\endinput

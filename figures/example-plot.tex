@@ -1,0 +1,19 @@
+% Example figure using TikZ
+\begin{tikzpicture}
+    \begin{axis}[
+        width=10cm,
+        height=6cm,
+        xlabel={Load (kN)},
+        ylabel={Displacement (mm)},
+        grid=major,
+        legend pos=north west,
+    ]
+    \addplot[blue, thick, mark=*] coordinates {
+        (0,0) (10,2.5) (20,5.2) (30,8.1) (40,11.5) (50,15.2)
+    };
+    \addplot[red, thick, mark=square*] coordinates {
+        (0,0) (10,2.8) (20,5.8) (30,9.0) (40,12.8) (50,17.0)
+    };
+    \legend{Experimental, Theoretical}
+    \end{axis}
+\end{tikzpicture}
