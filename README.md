@@ -34,5 +34,5 @@ simple-report-template/
 
 ## License
 
-This project is released under the Unlicense License, granting you complete freedom to use, modify, and distribute the template. For more details, see the [LICENSE file](./LICENSE) file.
+This project is released under the Unlicense License, granting you complete freedom to use, modify, and distribute the template. For more details, see the [LICENSE](./LICENSE) file.
 
