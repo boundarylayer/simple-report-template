@@ -1,5 +1,3 @@
-[LICENSE file](./LICENSE)# Simple Report Template
-
 A **LaTeX** template for creating academic reports.
 
 ## Preview
